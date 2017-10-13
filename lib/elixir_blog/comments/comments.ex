@@ -13,12 +13,14 @@ defmodule ElixirBlog.Comments do
 
   ## Examples
 
-      iex> list_comments()
+      iex> list_comments(article)
       [%Comment{}, ...]
 
   """
-  def list_comments do
-    Repo.all(Comment)
+  def list_comments(article) do
+    Comment
+    |> where([c], c.article_id == ^article.id)
+    |> Repo.all
   end
 
   @doc """
@@ -28,14 +30,18 @@ defmodule ElixirBlog.Comments do
 
   ## Examples
 
-      iex> get_comment!(123)
+      iex> get_comment!(article, 123)
       %Comment{}
 
-      iex> get_comment!(456)
+      iex> get_comment!(article, 456)
       ** (Ecto.NoResultsError)
 
   """
-  def get_comment!(id), do: Repo.get!(Comment, id)
+  def get_comment!(article, id) do
+    Comment
+    |> where([c], c.article_id == ^article.id)
+    |> Repo.get!(id)
+  end
 
   @doc """
   Creates a comment.

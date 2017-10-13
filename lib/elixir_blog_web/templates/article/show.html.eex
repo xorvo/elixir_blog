@@ -24,5 +24,8 @@
 
 </ul>
 
+<%= render ElixirBlogWeb.CommentView, "index.html", conn: @conn, article: @article, comments: ElixirBlog.Comments.list_comments(@article) %>
+
 <span><%= link "Edit", to: article_path(@conn, :edit, @article) %></span>
 <span><%= link "Back", to: article_path(@conn, :index) %></span>
+

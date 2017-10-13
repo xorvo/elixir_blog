@@ -8,7 +8,7 @@ defmodule ElixirBlog.Accounts.User do
     field :bio, :string
     field :display_name, :string
     field :password, :string
-    field :tags, {:array, :string}
+    field :tags, {:array, :string}, default: []
     field :username, :string
 
     timestamps()

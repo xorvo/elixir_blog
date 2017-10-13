@@ -5,10 +5,11 @@ defmodule ElixirBlog.Posts.Article do
 
 
   schema "articles" do
-    field :author_id, :integer
     field :body, :string
     field :tags, {:array, :string}
     field :title, :string
+    belongs_to :user, ElixirBlog.Accounts.User, foreign_key: :author_id
+    has_many :comment, ElixirBlog.Comments.Comment
 
     timestamps()
   end
@@ -17,6 +18,6 @@ defmodule ElixirBlog.Posts.Article do
   def changeset(%Article{} = article, attrs) do
     article
     |> cast(attrs, [:title, :body, :author_id, :tags])
-    |> validate_required([:title, :body, :author_id, :tags])
+    |> validate_required([:title, :body])
   end
 end

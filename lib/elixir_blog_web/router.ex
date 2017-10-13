@@ -18,8 +18,9 @@ defmodule ElixirBlogWeb.Router do
 
     get "/", PageController, :index
 
-    resources "/articles", ArticleController
-    resources "/comments", CommentController
+    resources "/articles", ArticleController do
+      resources "/comments", CommentController
+    end
     resources "/users", UserController
   end
 
