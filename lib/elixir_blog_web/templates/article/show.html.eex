@@ -1,31 +1,9 @@
-<h2>Show Article</h2>
-
-<ul>
-
-  <li>
-    <strong>Title:</strong>
-    <%= @article.title %>
-  </li>
-
-  <li>
-    <strong>Body:</strong>
-    <%= @article.body %>
-  </li>
-
-  <li>
-    <strong>Author:</strong>
-    <%= @article.author_id %>
-  </li>
-
-  <li>
-    <strong>Tags:</strong>
-    <%= @article.tags %>
-  </li>
-
-</ul>
-
-<%= render ElixirBlogWeb.CommentView, "index.html", conn: @conn, article: @article, comments: ElixirBlog.Comments.list_comments(@article) %>
-
+<h1><%= @article.title %></h1>
+<%= text_to_html @article.body %>
+<%= @article.tags %>
 <span><%= link "Edit", to: article_path(@conn, :edit, @article) %></span>
 <span><%= link "Back", to: article_path(@conn, :index) %></span>
 
+
+<%= render ElixirBlogWeb.CommentView, "index.html", conn: @conn, article: @article, comments: ElixirBlog.Comments.list_comments(@article) %>
+<%= render ElixirBlogWeb.CommentView, "new.html", conn: @conn, article: @article, changeset: comment_changeset(@article) %>

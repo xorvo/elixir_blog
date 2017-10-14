@@ -31,7 +31,7 @@ defmodule ElixirBlogWeb.CommentController do
       {:ok, comment} ->
         conn
         |> put_flash(:info, "Comment created successfully.")
-        |> redirect(to: article_comment_path(conn, :show, article, comment))
+        |> redirect(to: article_path(conn, :show, article))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset, article: article)
     end
@@ -44,7 +44,7 @@ defmodule ElixirBlogWeb.CommentController do
 
   def edit(conn, %{"id" => id}, article) do
     comment = Comments.get_comment!(article, id)
-    changeset = Comments.change_comment(article, comment)
+    changeset = Comments.change_comment(comment)
     render(conn, "edit.html", comment: comment, article: article, changeset: changeset)
   end
 
@@ -55,7 +55,7 @@ defmodule ElixirBlogWeb.CommentController do
       {:ok, comment} ->
         conn
         |> put_flash(:info, "Comment updated successfully.")
-        |> redirect(to: article_comment_path(conn, :show, article, comment))
+        |> redirect(to: article_path(conn, :show, article))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", comment: comment, article: article, changeset: changeset)
     end
