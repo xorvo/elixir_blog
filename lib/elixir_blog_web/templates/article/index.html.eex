@@ -1,9 +1,10 @@
 <span><%= link "New Article", to: article_path(@conn, :new) %></span>
 <%= for article <- @articles do %>
-  <h3><%= article.title %></h3>
+  <%= link to: article_path(@conn, :show, article) do %>
+    <h3><%= article.title %></h3>
+  <% end %>
   <%= text_to_html article.body %>
 
-  <span><%= link "Show", to: article_path(@conn, :show, article), class: "btn btn-default btn-xs" %></span>
   <span><%= link "Edit", to: article_path(@conn, :edit, article), class: "btn btn-default btn-xs" %></span>
   <span><%= link "Delete", to: article_path(@conn, :delete, article), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
 <% end %>
