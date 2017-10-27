@@ -3,6 +3,5 @@
     <h5><%= comment.title %></h5>
     <%= text_to_html comment.body %>
 
-    <span><%= link "Edit", to: article_comment_path(@conn, :edit, @article, comment), class: "btn btn-default btn-xs" %></span>
     <span><%= link "Delete", to: article_comment_path(@conn, :delete, @article, comment), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
 <% end %>

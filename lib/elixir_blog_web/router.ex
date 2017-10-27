@@ -19,7 +19,7 @@ defmodule ElixirBlogWeb.Router do
     get "/", PageController, :index
 
     resources "/articles", ArticleController do
-      resources "/comments", CommentController
+      resources "/comments", CommentController, except: [:edit, :update]
     end
     resources "/users", UserController
   end

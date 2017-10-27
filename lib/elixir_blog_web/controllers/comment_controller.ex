@@ -28,7 +28,7 @@ defmodule ElixirBlogWeb.CommentController do
       |> Map.put("article_id", article.id)
 
     case Comments.create_comment(comment_params) do
-      {:ok, comment} ->
+      {:ok, _comment} ->
         conn
         |> put_flash(:info, "Comment created successfully.")
         |> redirect(to: article_path(conn, :show, article))
@@ -52,7 +52,7 @@ defmodule ElixirBlogWeb.CommentController do
     comment = Comments.get_comment!(article, id)
 
     case Comments.update_comment(comment, comment_params) do
-      {:ok, comment} ->
+      {:ok, _comment} ->
         conn
         |> put_flash(:info, "Comment updated successfully.")
         |> redirect(to: article_path(conn, :show, article))

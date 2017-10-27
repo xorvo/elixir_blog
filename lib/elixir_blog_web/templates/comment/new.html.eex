@@ -1,5 +1,3 @@
 <h2>New Comment</h2>
 
 <%= render "form.html", Map.put(assigns, :action, article_comment_path(@conn, :create, @article)) %>
-
-<span><%= link "Back", to: article_comment_path(@conn, :index, @article) %></span>
